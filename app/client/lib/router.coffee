@@ -3,7 +3,7 @@
 ##########################
  
 window.Router =
-  uri: _.compact window.location.pathname.split("/")
+  getURI: -> _.compact window.location.pathname.split("/")
   routes: []
   addRoute: (route, template) ->
     segments = _.compact route.split("/")
@@ -22,14 +22,15 @@ window.Router =
   getMatchingRoute: ->
     for route in @routes
       data = {}
+      uri = @getURI()
 
-      if route.segments.length is this.uri.length
+      if route.segments.length is uri.length
         match = _.every route.segments, ((seg, i) ->
           if _.contains route.placeholderIndexes, i
-            data[seg] = @uri[i]
+            data[seg] = uri[i]
             true
           else
-            seg is @uri[i]
+            seg is uri[i]
         ), this
 
         if match 
@@ -39,6 +40,22 @@ window.Router =
           }
     # no matches (add 404 or default template maybe?)
     false
+  attachEventListeners: ->
+    atags = document.querySelectorAll('a[href]')
+    document.addEventListener 'click', ((event) =>
+      href = event.target.getAttribute 'href'
+      if href?
+        if window.history?.pushState?
+          window.history.pushState null, null, href
+          @run()
+        else
+          window.location.href = href
+        event.preventDefault()
+        false
+    ), false
+
+    window.addEventListener 'popstate', =>
+      @run()
   run: ->
     route = @getMatchingRoute()
     if route
@@ -46,6 +63,8 @@ window.Router =
         if Template[route.template]?
           Template[route.template](route.data)
 
+      document.body.innerHTML = ''
       document.body.appendChild fragment
     else
       # 404
+

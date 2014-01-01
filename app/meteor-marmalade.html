@@ -5,10 +5,23 @@
 <body>
 </body>
 
+<template name="navPartial">
+  <ul class="side-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+  </ul>
+</template>
+
 <template name="homeTemplate">
-  <h1>Hello World!</h1>
+  {{> navPartial }}
+  <div id='home' class='page'>
+    <h1>Hello World!</h1>
+  </div>
 </template>
 
 <template name="portfolioTemplate">
-  <h1>Portfolio</h1>
+  {{> navPartial }}
+  <div id='portfolio' class='page'>
+    <h1>Portfolio</h1>
+  </div>
 </template>

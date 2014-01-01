@@ -1,1 +1,6 @@
 /* CSS declarations go here */
+
+.page, .side-nav {
+  display: inline-block;
+  vertical-align: top;
+}
