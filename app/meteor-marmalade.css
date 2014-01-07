@@ -1,31 +1,47 @@
 /* CSS declarations go here */
 
-body {
-  width: 50em;
-}
-
-.side-nav {
+ul.side-nav {
   width: 6em;
+  float: left;
 }
 
 .page, .side-nav {
-  display: inline-block;
   vertical-align: top;
   margin: 1em;
 }
 
+.side-nav {
+  display: block;
+}
+
 .page {
-  width: 37em;
-  margin-right: 0;
+  display: table-cell;
+  padding: 0 1em 0 1em;
 }
 
 ol.spaced > li {
   margin-bottom: 1em;
 }
 
+ul.full-width-nav {
+  list-style-type: none;
+  font-size: 14px;
+  margin: 16px;
+  display: block;
+  text-align: center;
+  clear: both;
+}
+
+ul.full-width-nav li {
+  padding: 6px 0 6px 0;
+}
+
+ul.full-width-nav li + li {
+  border-top: 1px solid lightgray;
+}
+
 #portfolio img {
   width: 200px;
-  /* margin-right: 1.375rem; */
   margin-right: 1em;
 }
 

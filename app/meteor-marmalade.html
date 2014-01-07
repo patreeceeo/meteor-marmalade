@@ -1,15 +1,26 @@
 <head>
-  <title>meteor-marmalade</title>
+  <title>Marmalade</title>
+  <link href='/favicon.jpeg' rel='icon'>
 </head>
 
 <body>
 </body>
 
 <template name="navPartial">
-  <ul class="side-nav">
+  <ul class="side-nav show-for-medium-up">
     <li><a href="/">Home</a></li>
     <li><a href="/philosophy">Philosophy</a></li>
     <li><a href="/portfolio">Portfolio</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</template>
+
+<template name="mobileNavPartial">
+  <ul class="full-width-nav hide-for-medium-up">
+    <li><a href="/">Home</a></li>
+    <li><a href="/philosophy">Philosophy</a></li>
+    <li><a href="/portfolio">Portfolio</a></li>
+    <li><a href="/contact">Contact</a></li>
   </ul>
 </template>
 
@@ -23,8 +34,9 @@
       <li>Training</li>
     </ul>
     <p>We offer the above services with regard to software development. 
-    <br>Our forté is building modern, responsive web applications.</p>
+    <wbr>Our forté is building modern, responsive web applications.</p>
   </div>
+  {{> mobileNavPartial }}
 </template>
 
 <template name="philosophyTemplate">
@@ -33,18 +45,18 @@
     <p>Welcome to the scrawl on<p>
     <h1>The Under Side of the Table</h1>
     <h3>Some Loosely-Held Opinions on Computer Programming (in no particular order:)</h3>
-    <ol class='spaced'>
+    <ol>
       <li>Never get abstract, automatic, or fancy right off the bat. Think simple, down-to-earth, niche. Write repetitive code until the pattern becomes clear, then find the abstraction that removes the repetition without sacrificing clarity or maintainability.</li>
       <li>Get something that works ASAP, even if it's only 1/1,000,000,000,000 of what you ultimately want.</li>
       <li>Test, Test, Test! Automation (after you've done #1) is your friend.</li>
-      <li>Keep it working as you add features. Steady progress with passing tests at each step is good. Giant leaps in the dark are good for learning purposes only.</li>
+      <li>Keep it working as you add features. Steady progress with passing tests at each step is good. Giant leaps in the dark are for learning purposes only.</li>
       <li>Inject dependencies at runtime, and gracefully handle when they can't be met.</li>
       <li>If you can't explain it to your grandma, you don't understand it.</li>
       <li>If you can explain it to your grandma and she doesn't understand it easily, its probably a bad idea. You need to be twice as clever as the code you're debugging. If you put all your cleverness into writing the code then only someone twice as clever can debug it.</li>
       <li>Write software that improves your own life and chances are it will improve the lives of others as well.</li>
       <li>At the same time as #8, write everything with an eye towards making it useful to someone else.</li>
       <li>Good software is lasagna that's been cleanly cut into personal-size cubes. Bad software is spaghetti.</li>
-      <li>Take care of the end-user by taking care of the middle-user. The care taken for the parts of the software that the end-user never sees will eventually effect the complexion of the parts the end-user does see.</li>
+      <li>Take care of the end-user by taking care of the middle-user. The care taken for the parts of the software that the end-user never sees will eventually effect the complexion of the parts the end-user does see. Fix &ldquo;broken windows&rdquo; as you encounter them.</li>
       <li>Developer job satisfaction should always be top priority.</li>
       <li>Writing and using automated tests changes how you write code and will make it easier to achieve all of the above.</li>
       <li>Experience is the best teacher.</li>
@@ -52,15 +64,18 @@
       <li>The first rule of Computer Programming is that there are no hard rules, only guidelines. It will never be a science but always an art.</li>
       <li>Good software was written primarily for humans to understand. It also happens to be comprehensible to a computer.</li>
       <li>Put on your emotionally-detached-scientist cap when things go wrong (in spite of my great advice.)</li>
+      <li>Rabbit holes can be deep, don't get lost down there.</li>
+      <li>It's amazing how much a frustrating bug can color your outlook on life. Try not to make any important decisions while under its spell.</li>
       <li>Don't forget to have fun.</li>
     </ol>
   </div>
+  {{> mobileNavPartial }}
 </template>
 
 <template name="portfolioTemplate">
   {{> navPartial }}
   <div id='portfolio' class='page'>
-    <h1>Portfolio</h1>
+    <h1>Portfolio (under construction)</h1>
     <section>
       <h3>Divvy</h3>
       <ul class='inline-list'>
@@ -71,7 +86,7 @@
         <li>Iron Router</li>
       </ul>
       <a href='http://divvy.meteor.com' target="blank"><img src="divvy-screenshot.png" class="left"></a>
-      <p>A simple mobile-friendly web app aimed at making sharing expenses a little easier.</p>
+      <p>A simple mobile-friendly real-time web app aimed at making sharing expenses a little easier.</p>
     </section>
     <section>
       <h3>Conway</h3>
@@ -85,4 +100,43 @@
       <p>Build interactive websites with that cellular automata feeling. In Development.</p>
     </section>
   </div>
+  {{> mobileNavPartial }}
+</template>
+
+<template name="contactTemplate">
+  {{> navPartial}}
+  <div id='contact' class='page'>
+    <h1>Contact</h1>
+    <h3>Drop us a line!</h3>
+    {{#if flash}}<div data-alert class="alert-box">{{flash}}<a href="#" class="close">&times;</a></div>{{/if}}
+    <form action='#'>
+      <div class='row'>
+        <div class='large-12 columns'>
+          <label>From</label>
+          <input type=text name='from' placeholder='msbob@hotmail.com'>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='large-12 columns'>
+          <label>Message (500 character limit)</label>
+          <textarea maxlength=500>Hi Marmalade...</textarea>
+         </div>
+      </div>
+      <div class='row'>
+        <div class='large-12 columns'>
+          <button id='send-button' type=button class='right'>Send</button>
+        </div>
+      </div>
+    </form> 
+    <p style="visibility: hidden">Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi Hi</p> 
+  </div>
+  {{> mobileNavPartial }}
+</template>
+
+<template name="contactThanksTemplate">
+  {{> navPartial}}
+  <div id='contactThanks' class='page'>
+    <h1>Thanks! We'll get back to you ASAP.</h1>
+  </div>
+  {{> mobileNavPartial }}
 </template>

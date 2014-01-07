@@ -40,16 +40,18 @@ window.Router =
           }
     # no matches (add 404 or default template maybe?)
     false
+  go: (href) ->
+    if window.history?.pushState?
+      window.history.pushState null, null, href
+      @run()
+    else
+      window.location.href = href
   attachEventListeners: ->
     atags = document.querySelectorAll('a[href]')
     document.addEventListener 'click', ((event) =>
       href = event.target.getAttribute 'href'
       if href?
-        if window.history?.pushState?
-          window.history.pushState null, null, href
-          @run()
-        else
-          window.location.href = href
+        @go href
         event.preventDefault()
         false
     ), false
