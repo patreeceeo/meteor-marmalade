@@ -58,6 +58,7 @@ window.Router =
 
     window.addEventListener 'popstate', =>
       @run()
+    @run()
   run: ->
     route = @getMatchingRoute()
     if route
